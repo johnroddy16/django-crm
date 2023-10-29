@@ -1,0 +1,47 @@
+<!-- testing the application: -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- the code in the div class is supposed to center the div: -->
+
+<div class="col-md-6 offset-md-3">
+
+{% if user.is_authenticated %}
+
+<h1>hello world</h1>
+</br>
+
+{% else %}
+
+<h1>login</h1>
+</br>
+<form method="POST" action="{% url 'home' %}">
+    {% csrf_token %}
+    <!-- we will head back to boots for the form -->
+    <form>
+        <div class="mb-3">
+          <!--<label for="exampleInputEmail1" class="form-label">Email address</label>-->
+          <input type="text" class="form-control" name="user_name" placeholder="user name" required>
+          <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>hanged from email to text 2 lines above-->
+        </div>
+        <div class="mb-3">
+          <!--<label for="exampleInputPassword1" class="form-label">Password</label>-->
+          <input type="password" class="form-control" name="pass_word" placeholder="password" required>
+        </div>
+        <!-- we got rid of id fields for the 2 inputs above
+          <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>-->
+        <button type="submit" class="btn btn-secondary">Submit</button>
+        <!-- we changed from primary to secondary on above line -->
+      </form>
+</form>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
