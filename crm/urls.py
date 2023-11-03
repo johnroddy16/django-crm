@@ -23,4 +23,9 @@ urlpatterns = [
     # path('login/', views.login_user, name='login'), # we are using home page to login
     path('logout/', views.logout_user, name='logout'),
     path('register/', views.register_user, name='register'),
+    path('record/<int:pk>', views.customer_record, name='record'),
+    # we will now head to views.py and create the customer_record view
+    path('delete_record/<int:pk>', views.delete_record, name='delete'),
+    path('add_record/', views.add_record, name='add'),
+    path('update_record/<int:pk>', views.update_record, name='update'),
 ]

@@ -1,0 +1,66 @@
+<!--we will now create the template record.html-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--<h1>customer record</h1>-->
+
+<!-- {{ customer_record }} this alone will only display first and last name as indicated in the model --> 
+
+<div class="card">
+    <div class="card-header">
+      {{ customer_record.first_name }} 
+      {{ customer_record.last_name }}
+    </div>
+    <div class="card-body">
+      <!--<h5 class="card-title">{{ customer_record.phone }}</br> {{ customer_record.email }}</h5>-->
+      <p class="card-text">
+        <strong>Phone: </strong>{{ customer_record.phone }}</br></br>
+        <strong>Email: </strong>{{ customer_record.email }}</br></br>
+        <strong>Address: </strong>{{ customer_record.address }}</br></br>
+        <strong>City: </strong>{{ customer_record.city }}</br></br> 
+        <strong>State: </strong>{{ customer_record.state }}</br></br>
+        <strong>Zip: </strong>{{ customer_record.zipcode }}</br></br>
+        <strong>Created At:</strong>{{ customer_record.created_at }}</br></br> 
+        <strong>ID: </strong>{{ customer_record.id }}</br></br>
+      </p>
+      <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+    </div>
+</div>
+
+<!-- for the sake of the lesson let us create another back button: -->
+
+</br></br>
+hello 
+</br></br>
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+</br></br>
+<a href="{% url 'delete' customer_record.id %}" class="btn btn-primary">Delete {{ customer_record }}</a>
+</br></br>
+<a href="{% url 'update' customer_record.id %}" class="btn btn-primary">Update {{ customer_record }}</a>
+
+<!-- we will need to build the functionality for deletion with url, view, template -->
+
+<!-- {{ customer_record.first_name }} {{ customer_record.last_name }}
+</br>    
+{{ customer_record.phone }}
+</br>      
+{{ customer_record.email }}  
+</br>      
+{{ customer_record.address }}
+</br>      
+{{ customer_record.city }} 
+</br>      
+{{ customer_record.state }} 
+</br>       
+{{ customer_record.zipcode }}  
+</br>       
+{{ customer_record.created_at }}  
+</br>      
+{{ customer_record.id }}
+
+back to boots to make this thing better with a components/card -->
+
+{% endblock %}

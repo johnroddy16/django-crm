@@ -6,21 +6,69 @@
 
 <!-- the code in the div class is supposed to center the div: -->
 
-<div class="col-md-6 offset-md-3">
+<!--<div class="col-md-6 offset-md-3"> taking this center a div out 4 now, don't seem to need with the table-->
 
 {% if user.is_authenticated %}
 
-<h1>hello world</h1>
+<h1>hello world, here are the current records</h1> <!--i should take this out too but will leave 4 now-->
 </br>
+
+<table class="table table-dark table-hover table-bordered border-secondary">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">Zip Code</th>
+      <th scope="col">Created At</th>
+      <th scope="col">id</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% if records %}
+    {% for record in records %}
+    <tr>
+    <!-- records comes from the context given on the last line of the home view -->
+      <td><a href="{% url 'record' record.id %}">{{ record.first_name }} {{ record.last_name }}</a></td>
+    <!--just having record here would show first and last name, set up in model-->
+      <td>{{ record.phone }}</td>
+      
+      <td>{{ record.email }}</td>  
+      
+      <td>{{ record.address }}</td>
+      
+      <td>{{ record.city }}</td> 
+      
+      <td>{{ record.state }}</td> 
+       
+      <td>{{ record.zipcode }}</td>  
+       
+      <td>{{ record.created_at }}</td>  
+      
+      <td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>  <!-- turn some of these into links -->
+    </tr> 
+    {% endfor %}
+    {% endif %}
+
+  </tbody>
+</table>
+
+<!--this is all great but we need to head to urls.py and do some other things to make the
+records viewable indivdually-->
 
 {% else %}
 
+<div class="col-md-6 offset-md-3">  <!-- center the div -->
 <h1>login</h1>
 </br>
 <form method="POST" action="{% url 'home' %}">
-    {% csrf_token %}
+    {% csrf_token %} 
     <!-- we will head back to boots for the form -->
-    <form>
+    
         <div class="mb-3">
           <!--<label for="exampleInputEmail1" class="form-label">Email address</label>-->
           <input type="text" class="form-control" name="user_name" placeholder="user name" required>
@@ -37,10 +85,11 @@
         </div>-->
         <button type="submit" class="btn btn-secondary">Submit</button>
         <!-- we changed from primary to secondary on above line -->
-      </form>
+      
 </form>
-
 </div>
+
+<!--</div> taking the closing div tag out to balance the HTML file-->
 
 {% endif %}
 

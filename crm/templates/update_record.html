@@ -1,0 +1,29 @@
+<!-- we shall now create the HTML file 4 updating records in the application: -->
+
+<!-- as always we will start by extending base.html: -->
+
+{% extends 'base.html' %} <!-- as always we will extend base.html --> 
+
+{% block content %}
+
+
+<div class="col-md-6 offset-md-3">  <!-- center the div -->
+
+<h2>Update Record</h2>
+</br>
+
+<!-- we need to create an add record form in foorms.py -->
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    </br>
+    <button type="submit" class="btn btn-primary">Update Record</button>
+    </br></br>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+</form>
+
+</div>
+
+{% endblock %}

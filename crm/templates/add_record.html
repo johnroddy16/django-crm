@@ -1,0 +1,25 @@
+<!-- we will now create a HTML file to add a record to the database: -->
+
+{% extends 'base.html' %} <!-- as always we will extend base.html --> 
+
+{% block content %}
+
+
+<div class="col-md-6 offset-md-3">  <!-- center the div -->
+
+<h2>add a record to the MySQL database</h2>
+</br>
+
+<!-- we need to create an add record form in foorms.py -->
+
+<form method="POST" action="{% url 'add' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    </br>
+    <button type="submit" class="btn btn-primary">Add Record</button>
+</form>
+
+</div>
+
+{% endblock %}
